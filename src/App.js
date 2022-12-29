@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
+import { data } from './data';
+import Slider from './Slider';
 
 function App() {
+  const [item, setItem] = useState(data)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {item.map((element => {
+        const {id, itemName, price, images} = element;
+        return(
+          <div key={id}>
+            <div className='container'>
+            <h2>{itemName}</h2>
+            </div>
+            <div className='container'>
+            <h2>{price}</h2>
+            </div>
+          <Slider/>
+          </div>
+        )
+      }))}
+
+
     </div>
   );
 }
